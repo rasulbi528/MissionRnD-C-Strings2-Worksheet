@@ -16,8 +16,22 @@ original String
 
 #include <stddef.h>
 #include <stdlib.h>
-
+int string_len(char* str) {
+	char* s = str;
+	while (*++s);
+	return s - str;
+}
 char * get_sub_string(char *str, int i, int j){
-
-    return NULL;
+	if (str == NULL || *str == '\0')
+		return NULL;
+	else {
+		int len = string_len(str);
+		if (j >= len || i < 0 || i > j)
+			return NULL;
+		char* substr = (char*)calloc(j - i + 2, sizeof(char));
+		char *s = substr;
+		while (i <= j) *s++ = *(str + i++);
+		*s = '\0';
+		return substr;
+	}
 }
