@@ -18,9 +18,29 @@ NOTES: Don't create new string , Dont return anything ,you have been given two p
 */
 
 #include <stddef.h>
-
+void to_lower(char* str) {
+	char *s = str;
+	while (*s) {
+		if (*s >= 'A' && *s <= 'Z')
+			*s += 32;
+		s++;
+	}
+}
 
 void count_vowels_and_consonants(char *str,int *consonants, int *vowels){
-
-
+	*consonants = *vowels = 0;
+	if (str == NULL || *str == '\0')
+		return;
+	else {
+		to_lower(str);
+		char *s = str;
+		while (*s) {
+			if (*s >= 'a' && *s <= 'z') 
+				if (*s == 'a' || *s == 'e' || *s == 'i' || *s == 'o' || *s == 'u')
+					++(*vowels);
+				else
+					++(*consonants);			
+			s++;
+		}
+	}
 }
